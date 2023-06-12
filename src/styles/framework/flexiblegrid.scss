@@ -1,0 +1,34 @@
+// flex grid variable
+
+$grid-name: 'd-column';
+$grid-hidden-name: 'hidden';
+$grid-opacity-name: 'opacity';
+$absolute-name: 'absolute';
+$relative-name: 'relative';
+$margin-name: 'margin';
+$padding-name: 'padding';
+$grid-container-name: 'd-container';
+
+//grid media queries
+$screen-xs: 0px !default;
+$screen-sm: $small-screen;
+$screen-md: $medium-screen;
+$screen-lg: $large-screen;
+$screen-xl: 1366px !default;
+
+//flex container
+$container-media-list: (
+	xs: 540px,
+	sm: 720px,
+	s md: 960px,
+	lg: 1140px,
+	xl: 1366px,
+);
+
+//@import "~flexiblegrid/src/sass/normalize";
+@import '~flexiblegrid/src/sass/variables';
+@import '~flexiblegrid/src/sass/definitions';
+@import '~flexiblegrid/src/sass/array-list';
+@import '~flexiblegrid/src/sass/wrapper';
+@import '~flexiblegrid/src/sass/grid';
+@import '~flexiblegrid/src/sass/attribute';

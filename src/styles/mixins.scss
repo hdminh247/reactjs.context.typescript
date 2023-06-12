@@ -1,0 +1,257 @@
+@mixin heading() {
+	font-family: $FontHeading;
+	line-height: 1;
+	padding-bottom: 12px;
+	padding-top: 12px;
+}
+
+@mixin scrollbar-y($width: 8px) {
+	&::-webkit-scrollbar {
+		width: $width;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: hsla(0, 0%, 53.3%, 0.4);
+		height: 56px;
+		border-radius: 24px;
+	}
+}
+
+@mixin scrollbar-x($x-height: 6px) {
+	&::-webkit-scrollbar {
+		width: 8px;
+		height: $x-height;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: hsla(0, 0%, 53.3%, 0.4);
+		width: 56px;
+	}
+}
+
+@mixin transition() {
+	-webkit-transition: all $Transition;
+	-moz-transition: all $Transition;
+	-ms-transition: all $Transition;
+	-o-transition: all $Transition;
+	transition: all $Transition;
+}
+
+@mixin single-transition($transition) {
+	-webkit-transition: $transition $Transition;
+	-moz-transition: $transition $Transition;
+	-ms-transition: $transition $Transition;
+	-o-transition: $transition $Transition;
+	transition: $transition $Transition;
+}
+
+@mixin max-lines($n) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: $n; /* number of lines to show */
+	-webkit-box-orient: vertical;
+}
+
+@mixin flex() {
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+}
+
+@mixin flexwrap($wrap) {
+	flex-wrap: $wrap;
+	-ms-flex-wrap: $wrap;
+	-webkit-flex-wrap: $wrap;
+}
+
+@mixin justify-content($justify) {
+	justify-content: $justify;
+	-webkit-justify-content: $justify;
+}
+
+@mixin centered() {
+	@include valign-wrapper();
+	@include justify-content(center);
+}
+
+@mixin valign-wrapper() {
+	@include flex();
+	align-items: center;
+}
+
+@mixin halign-wrapper() {
+	@include flex();
+	@include flex-direction(column);
+	align-items: center;
+}
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin shadow-dense() {
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
+	-webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+@mixin flex-direction($direction) {
+	flex-direction: $direction;
+	-ms-flex-direction: $direction;
+	-webkit-flex-direction: $direction;
+}
+
+@mixin background-image($name: '', $position: center) {
+	@if ($name!= '') {
+		background-image: url('/images/#{$name}');
+	}
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: $position;
+}
+
+// Media Query Functions
+@mixin sm-width($width) {
+	@media #{$small-and-down} {
+		min-width: $width;
+	}
+}
+
+@mixin md-width($width) {
+	@media #{$medium-and-down} {
+		min-width: $width;
+	}
+}
+
+@mixin sm-font-size($size) {
+	@media #{$small-and-down} {
+		font-size: $size;
+	}
+}
+
+@mixin md-font-size($size) {
+	@media #{$medium-and-down} {
+		font-size: $size;
+	}
+}
+
+@mixin max-page-width($page-width, $media, $max-width: $MaxPageWidth) {
+	@media (min-width: $media) {
+		max-width: $max-width;
+		width: 100%;
+		margin: 0 auto;
+
+		.full-page-width {
+			margin-left: calc((#{$page-width} - #{$BodyPadding * 2} - 100vw) / 2) !important;
+			margin-right: calc((#{$page-width} - #{$BodyPadding * 2} - 100vw) / 2) !important;
+
+			.page-width {
+				max-width: $max-width;
+				width: 100%;
+				margin: 0 auto;
+				min-height: inherit !important;
+			}
+		}
+	}
+
+	@media only screen and (max-width: $media) {
+		.full-page-width {
+			margin-left: -#{$BodyPadding} !important;
+			margin-right: -#{$BodyPadding} !important;
+		}
+	}
+}
+
+// margin array list
+$margin-type-list: (
+	m: (
+		'null',
+	),
+	mt: (
+		'top',
+	),
+	mr: (
+		'right',
+	),
+	mb: (
+		'bottom',
+	),
+	ml: (
+		'left',
+	),
+);
+
+// padding array list
+$padding-type-list: (
+	p: (
+					'null',
+	),
+	pt: (
+					'top',
+	),
+	pr: (
+					'right',
+	),
+	pb: (
+					'bottom',
+	),
+	pl: (
+					'left',
+	),
+);
+
+// Margin
+@mixin make-margin($screen-name, $line: '-') {
+	@each $option-name, $option-value in $margin-type-list {
+		@for $i from 0 through 6 {
+			.#{$option-name}-#{$i * 8}#{$line}#{$screen-name} {
+				@if ($option-name == 'm') {
+					margin: #{$i * 8px} !important;
+				} @else {
+					margin-#{$option-value}: #{$i * 8px} !important;
+				}
+			}
+		}
+	}
+	@for $i from 1 through 6 {
+		.m#{$line}#{$screen-name}-#{$i * 8} {
+			margin: #{$i * 8px} !important;
+		}
+	}
+}
+
+// Padding
+@mixin make-padding($screen-name, $line: '-') {
+	@each $option-name, $option-value in $padding-type-list {
+		@for $i from 0 through 6 {
+			.#{$option-name}-#{$i * 8}#{$line}#{$screen-name} {
+				@if ($option-name == 'p') {
+					margin: #{$i * 8px} !important;
+				} @else {
+					padding-#{$option-value}: #{$i * 8px} !important;
+				}
+			}
+		}
+	}
+	@for $i from 1 through 6 {
+		.p#{$line}#{$screen-name}-#{$i * 8} {
+			margin: #{$i * 8px} !important;
+		}
+	}
+}
+
+// Font weight
+@mixin make-font-weight($line: '-') {
+	@for $i from 4 through 8 {
+		.weight#{$line}-#{$i * 100} {
+			font-weight: #{$i * 100} !important;
+		}
+	}
+}
+
+
+@include make-margin($screen-name: null, $line: null);
+@include make-padding($screen-name: null, $line: null);
+@include make-font-weight($line: null);

@@ -1,0 +1,35 @@
+@import 'fonts';
+@import 'variables';
+@import 'mixins';
+@import 'framework/flexiblegrid';
+@import 'pages/index';
+@import 'custom';
+
+:root {
+	--primary-color: #{$AccentColor};
+	--text-color: #{$TextColor};
+	--text-color-light: #{$TextColorLight};
+	font-family: $Font !important;
+}
+
+html body {
+	margin: 0;
+	width: 100% !important;
+	font-family: $Font !important;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	line-height: 1.5;
+}
+
+.large-and-up {
+	@media #{$medium-and-down} {
+		display: none !important;
+	}
+}
+
+.medium-and-down {
+	@media #{$large-and-up} {
+		display: none !important;
+	}
+}

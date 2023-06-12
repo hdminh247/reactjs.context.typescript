@@ -1,0 +1,159 @@
+.align-v-center{
+  display: flex !important;
+  align-items: center;
+}
+
+.align-h-center{
+  display: flex !important;
+  justify-content: center;
+}
+
+.align-h-right{
+  display: flex !important;
+  justify-content: flex-end;
+}
+
+.p{
+  &-relative{
+    position: relative;
+  }
+}
+
+.d-inline{
+  display: inline;
+}
+
+.d-inline-block{
+  display: inline-block;
+}
+
+.d-none{
+  display: none;
+}
+
+.margin-h-auto{
+  margin: 0 auto;
+}
+
+.hide-but-active-element{
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.ml{
+  &-14{
+    margin-left: 14px;
+  }
+}
+
+.line-height{
+  &-22{
+    line-height: 22px;
+  }
+
+  &-24{
+    line-height: 24px;
+  }
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.text{
+  &-right{
+    text-align: right;
+  }
+}
+
+.visibility-hidden{
+  visibility: hidden;
+}
+
+.color-white{
+  color: white;
+}
+
+.color-red{
+  color: $Red;
+}
+
+.color-green{
+  color: $PrimaryGreen;
+}
+
+.color-blue{
+  color: $Blue;
+}
+
+.color-yellow{
+  color: $Yellow;
+}
+
+.color-gray{
+  color: $Grey-500
+}
+
+//a{
+//  &:hover{
+//    color: $PrimaryGreen !important;
+//  }
+//}
+
+.align-right-wrapper{
+  direction: rtl;
+  max-width: 50%;
+}
+
+.grey-link{
+  color: #6A7D85;
+  cursor: pointer;
+}
+
+.image-overlay {
+  position: absolute;
+  z-index: 0;
+  background-image: linear-gradient(to top, #00000070, rgba(15, 52, 56, 0.2));
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: $Radius;
+}
+
+.relative{
+  position: relative;
+}
+
+.overflow-y--hidden{
+  overflow-y: hidden;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text--16{
+  font-size: 16px;
+}
+
+.text--14{
+  font-size: 14px;
+}
+
+.float{
+  &--none{
+    float: none;
+  }
+}
+
+.mb--m32{
+  margin-bottom: -32px;
+}
+
+.mb-4{
+  margin-bottom: 4px;
+}
